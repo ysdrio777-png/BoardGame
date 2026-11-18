@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.GameMapper">
+	<select id="findById" resultType="com.example.demo.entity.User">
+		SELECT id, game_name as GameName, description
+		FROM games WHERE id = #{id}
+	</select>
+
+	<update id="updateGameDes">
+		UPDATE games SET description = #{description}
+	</update>
+
+	<insert id="registerGame">
+		INSERT INTO games (game_name, description)
+		VALUES
+		(#gameName, #{description})
+	</insert>
+
+	<delete id="deleteGame">
+		DELETE FROM games WHERE id = #{id}
+	</delete>
+</mapper>

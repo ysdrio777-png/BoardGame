@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.GameMatchMapper">
+	<insert id="registerMatch">
+        INSERT INTO game_match
+        (game_id,player1_id, player2_id,
+            is_draw, start_date_time)
+        VALUES
+        (#{game.id}, #{player1.id}, #{player2.id},
+            #{isDraw}, #{startDateTime})
+    </insert>
+    
+    <update id="updateMatch">
+        UPDATE game_match SET winner_id = #{winner.id},
+        loser_id = #{loser.id},is_draw = #{isDraw}
+        WHERE id = #{id}
+    </update>
+    
+    <update id="updateEndDatetime">
+        UPDATE game_match
+        SET end_date_time = #{endDateTime}
+        WHERE id = #{id}
+    </update>
+    
+</mapper>

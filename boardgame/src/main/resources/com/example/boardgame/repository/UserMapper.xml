@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.UserMapper">
+
+	<insert id="registerUser">
+		INSERT INTO users (username,created_at)
+		VALUES
+		(#{username},CURRENT_TIMESTAMP)
+	</insert>
+
+	<select id="selectAllUser"
+		resultType="com.example.demo.entity.User">
+		SELECT id, username, win_count as winCount, lose_count as loseCount,
+		draw_count as drawCount, created_at as createdAt
+		FROM users
+	</select>
+
+	<select id="findByUsername"
+		resultType="com.example.demo.entity.User">
+		SELECT id, username, win_count as winCount, lose_count as loseCount,
+		draw_count as drawCount, created_at as createdAt
+		FROM users WHERE username = #{username}
+	</select>
+
+	<select id="findById" resultType="com.example.demo.entity.User">
+		SELECT id, username, win_count as winCount, lose_count as loseCount,
+		draw_count as drawCount, created_at as createdAt
+		FROM users WHERE id = #{id}
+	</select>
+
+	<update id="updateUser">
+		UPDATE users SET username = #{username}, win_count = #{winCount},
+		lose_count = #{loseCount}, draw_count = #{drawCount},
+		created_at = #{createdAt} WHERE id = #{id}
+	</update>
+</mapper>
